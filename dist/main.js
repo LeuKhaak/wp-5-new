@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/style.scss":
-/*!************************!*\
-  !*** ./src/style.scss ***!
-  \************************/
+/***/ "./src/styles/style.scss":
+/*!*******************************!*\
+  !*** ./src/styles/style.scss ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -60,25 +60,50 @@ var __webpack_exports__ = {};
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
+/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ "./src/styles/style.scss");
+// @ts-nocheck
 
-
-var sayHello = function sayHello() {
-  return console.log("hello!!!");
-};
-
-sayHello();
-var text1 = "Hello, friends!"; // создаем параграф
-
-var p = document.createElement("p");
-p.textContent = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, nobis repellendus? Cupiditate iure voluptates voluptate voluptatum eligendi ut praesentium sapiente eum aliquam et rerum omnis, veritatis sunt beatae magnam minima!"; // создаем элемент заголовка
-
-var heading = document.createElement("h1");
-heading.textContent = "Wow! ".concat(text1, ".");
-heading.classList.add("title"); // добавляем параграф и заголовок в DOM
-
+var colors = ["red", "orange", "yellow", "green", "lightblue", "blue", "purple", "white"];
+var slideWrapper = document.createElement("div");
+slideWrapper.classList.add("slider-wrapper");
+var sliderList = document.createElement("ul");
+sliderList.classList.add("slider-list");
+sliderList.setAttribute("style", "left: 0.5rem;");
+colors.forEach(function (item) {
+  console.log(item);
+  var color = item;
+  item = document.createElement("li");
+  item.classList.add("slider-Item");
+  item.setAttribute("style", "background-color: ".concat(color, ";"));
+  sliderList.append(item);
+});
+var sliderItem2 = document.createElement("li");
+sliderItem2.classList.add("slider-Item");
+var slideButtonWrapper = document.createElement("div");
+slideButtonWrapper.classList.add("slider-button-wrapper");
+var slideButtonPrev = document.createElement("button");
+slideButtonPrev.innerHTML = 'Previous slide';
+slideButtonPrev.classList.add("slider-button");
+var slideButtonNext = document.createElement("button");
+slideButtonNext.innerHTML = 'Next slide';
+slideButtonNext.classList.add("slider-button");
+slideButtonWrapper.append(slideButtonPrev, slideButtonNext);
+var shift = -0.5;
+slideButtonNext.addEventListener('click', function () {
+  if (shift < 150) {
+    shift += 25.5;
+    sliderList.setAttribute("style", "left: -".concat(shift, "rem;"));
+  }
+});
+slideButtonPrev.addEventListener('click', function () {
+  if (shift > 0) {
+    shift -= 25.5;
+    sliderList.setAttribute("style", "left: -".concat(shift, "rem;"));
+  }
+});
 var root = document.querySelector("#root");
-root.append(heading, p);
+root.append(slideWrapper);
+slideWrapper.append(sliderList, slideButtonWrapper);
 })();
 
 /******/ })()
